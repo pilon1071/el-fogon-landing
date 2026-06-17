@@ -1041,7 +1041,11 @@
       'Después explica brevemente por qué los elegiste.\n\n' +
       'CATÁLOGO (referencia interna):\n' + CATALOG_TEXT + '\n\n' +
       'Responde siempre en español. Sé directo, profesional y conciso. ' +
-      'Los precios son orientativos — la cotización final la coordina el equipo de El Fogón.';
+      'Datos de contacto de El Fogón Restaurant Supply: ' +
+      'Dirección: 2421 W Bus Hwy 83, McAllen, TX 78596. ' +
+      'Teléfono: (956) 682-4445. ' +
+      'Correo: rvela@fogonre.com. ' +
+      'Los precios son orientativos — la cotización formal la coordina el equipo de El Fogón.';
 
     var TOOLS = [{
       name: 'suggest_products',
@@ -1233,7 +1237,8 @@
         '<table><thead><tr><th>Equipo</th><th style="text-align:right">Precio orientativo</th></tr></thead>' +
         '<tbody>' + rows + '</tbody></table>' +
         '<p class="row-total">Total estimado: $' + total.toLocaleString('en') + ' USD</p>' +
-        '<p class="note">* Precios orientativos. La cotización formal incluye instalación, garantía extendida y condiciones específicas de su proyecto. Contacto: hola@elfogon.mx · Respuesta en menos de 24 h.</p>' +
+        '<p class="note">* Precios orientativos. La cotización formal incluye instalación, garantía extendida y condiciones específicas de su proyecto.<br>' +
+        'El Fogón Restaurant Supply · 2421 W Bus Hwy 83, McAllen, TX 78596 · (956) 682-4445 · rvela@fogonre.com</p>' +
         '</body></html>'
       );
       w.document.close();
