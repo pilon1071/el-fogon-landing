@@ -1010,9 +1010,8 @@
   <script>
   (function () {
     // ── CONFIG ─────────────────────────────────────────────
-    var API_KEY = 'YOUR_API_KEY_HERE'; // <-- Paste your Anthropic API key here
     var MODEL   = 'claude-haiku-4-5';
-    var API_URL = 'https://api.anthropic.com/v1/messages';
+    var API_URL = '/.netlify/functions/chat';
 
     // ── PRODUCT CATALOG ────────────────────────────────────
     var PRODUCTS = [
@@ -1245,11 +1244,6 @@
     function sendMessage(text) {
       if (isLoading || !text.trim()) return;
 
-      if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
-        appendMsg('assistant', 'Para activar el cotizador, reemplaza YOUR_API_KEY_HERE en el código con tu clave de API de Anthropic.');
-        return;
-      }
-
       isLoading = true;
       sendBtn.disabled = true;
       appendMsg('user', text);
@@ -1262,12 +1256,7 @@
     function callAPI() {
       fetch(API_URL, {
         method: 'POST',
-        headers: {
-          'x-api-key': API_KEY,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json',
-          'anthropic-dangerous-client-side-api-key-access': 'my-application'
-        },
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           model: MODEL,
           max_tokens: 1024,
