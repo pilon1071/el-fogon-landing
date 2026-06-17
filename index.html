@@ -388,6 +388,186 @@
       background: hsl(14 88% 55%); display: inline-block; margin-bottom: -8px;
     }
     .footer-copy { font-size: 13.5px; color: hsl(0 0% 75% / 0.55); }
+
+    /* ---- CHAT WIDGET ---- */
+    .chat-toggle {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: hsl(14 88% 55%); color: hsl(0 0% 4%);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,.5);
+      transition: filter .2s, transform .2s;
+    }
+    .chat-toggle:hover { filter: brightness(1.08); transform: scale(1.05); }
+
+    .chat-panel {
+      position: fixed; bottom: 100px; right: 28px; z-index: 199;
+      width: 380px; max-width: calc(100vw - 40px);
+      height: 560px; max-height: calc(100vh - 120px);
+      background: hsl(0 0% 7%);
+      border: 1px solid hsl(0 0% 100% / 0.08);
+      border-radius: 20px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.6);
+      transform: translateY(16px) scale(0.98);
+      opacity: 0; pointer-events: none;
+      transition: transform .25s cubic-bezier(.4,0,.2,1), opacity .2s;
+    }
+    .chat-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+
+    .chat-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid hsl(0 0% 100% / 0.07);
+      flex-shrink: 0;
+    }
+    .chat-header-left { display: flex; align-items: center; gap: 10px; }
+    .chat-header-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: hsl(14 88% 55%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; color: hsl(0 0% 4%); flex-shrink: 0;
+    }
+    .chat-header-name { font-size: 14px; font-weight: 600; color: hsl(0 0% 98%); }
+    .chat-header-status { font-size: 11.5px; color: hsl(0 0% 75% / 0.65); margin-top: 1px; }
+    .chat-close {
+      background: none; border: none; cursor: pointer;
+      color: hsl(0 0% 75% / 0.55); padding: 6px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color .15s, background .15s;
+    }
+    .chat-close:hover { color: hsl(0 0% 98%); background: hsl(0 0% 100% / 0.06); }
+
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: hsl(0 0% 100% / 0.1); border-radius: 2px; }
+
+    .msg-row { display: flex; gap: 8px; align-items: flex-end; }
+    .msg-row.user { flex-direction: row-reverse; }
+    .msg-bubble {
+      max-width: 82%; padding: 10px 14px;
+      border-radius: 16px; font-size: 13.5px; line-height: 1.55;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    .msg-row.assistant .msg-bubble {
+      background: hsl(0 0% 12%); color: hsl(0 0% 90%);
+      border-bottom-left-radius: 4px;
+    }
+    .msg-row.user .msg-bubble {
+      background: hsl(14 88% 55%); color: hsl(0 0% 4%);
+      border-bottom-right-radius: 4px;
+    }
+    .msg-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: hsl(14 88% 55%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: hsl(0 0% 4%); flex-shrink: 0;
+    }
+
+    .product-cards { display: flex; flex-direction: column; gap: 8px; max-width: 90%; }
+    .product-card {
+      background: hsl(0 0% 10%);
+      border: 1px solid hsl(0 0% 100% / 0.08);
+      border-radius: 12px; padding: 12px 14px;
+    }
+    .product-card-name { font-size: 13px; font-weight: 600; color: hsl(0 0% 95%); }
+    .product-card-cat {
+      font-size: 11px; color: hsl(0 0% 75% / 0.55);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px;
+    }
+    .product-card-desc { font-size: 12.5px; color: hsl(0 0% 75% / 0.75); margin-top: 6px; line-height: 1.4; }
+    .product-card-footer {
+      display: flex; align-items: center; justify-content: space-between; margin-top: 10px;
+    }
+    .product-card-price { font-size: 14.5px; font-weight: 600; color: hsl(0 0% 98%); }
+    .product-card-add {
+      font-size: 12px; font-weight: 500;
+      background: hsl(14 88% 55%); color: hsl(0 0% 4%);
+      border: none; cursor: pointer;
+      padding: 6px 14px; border-radius: 9999px;
+      transition: filter .15s;
+      white-space: nowrap;
+    }
+    .product-card-add:hover { filter: brightness(1.1); }
+    .product-card-add.added {
+      background: hsl(0 0% 18%); color: hsl(0 0% 65%); cursor: default; filter: none;
+    }
+
+    .chat-quote { border-top: 1px solid hsl(0 0% 100% / 0.07); flex-shrink: 0; }
+    .chat-quote-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; cursor: pointer; user-select: none;
+    }
+    .chat-quote-title { font-size: 12.5px; font-weight: 600; color: hsl(0 0% 85%); }
+    .chat-quote-total { font-size: 13px; font-weight: 600; color: hsl(14 88% 55%); }
+    .chat-quote-body { display: none; padding: 0 16px 12px; }
+    .chat-quote-body.open { display: block; }
+    .quote-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 0; border-top: 1px solid hsl(0 0% 100% / 0.05); font-size: 12px;
+    }
+    .quote-item-name { color: hsl(0 0% 85%); flex: 1; padding-right: 8px; }
+    .quote-item-price { color: hsl(0 0% 65%); white-space: nowrap; }
+    .quote-item-remove {
+      background: none; border: none; cursor: pointer;
+      color: hsl(0 0% 45%); padding: 0 0 0 8px;
+      font-size: 16px; line-height: 1; transition: color .15s;
+    }
+    .quote-item-remove:hover { color: hsl(0 0% 80%); }
+    .quote-print {
+      width: 100%; margin-top: 8px; padding: 9px; border-radius: 9999px;
+      background: hsl(0 0% 15%); color: hsl(0 0% 82%);
+      border: 1px solid hsl(0 0% 100% / 0.08);
+      font-size: 12.5px; font-weight: 500; cursor: pointer;
+      transition: background .15s; font-family: inherit;
+    }
+    .quote-print:hover { background: hsl(0 0% 18%); }
+
+    .chat-input-row {
+      display: flex; align-items: flex-end; gap: 8px;
+      padding: 12px 14px 14px;
+      border-top: 1px solid hsl(0 0% 100% / 0.07);
+      flex-shrink: 0;
+    }
+    .chat-input {
+      flex: 1; resize: none; min-height: 36px; max-height: 100px;
+      background: hsl(0 0% 12%); color: hsl(0 0% 95%);
+      border: 1px solid hsl(0 0% 100% / 0.1);
+      border-radius: 12px; padding: 8px 12px;
+      font-size: 13.5px; font-family: inherit;
+      outline: none; line-height: 1.4;
+      transition: border-color .15s;
+    }
+    .chat-input:focus { border-color: hsl(14 88% 55% / 0.5); }
+    .chat-input::placeholder { color: hsl(0 0% 75% / 0.4); }
+    .chat-send {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: hsl(14 88% 55%); color: hsl(0 0% 4%);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: filter .15s;
+    }
+    .chat-send:hover:not(:disabled) { filter: brightness(1.1); }
+    .chat-send:disabled { opacity: 0.4; cursor: default; }
+
+    .chat-typing { display: flex; align-items: center; gap: 4px; padding: 2px 0; }
+    .chat-typing span {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: hsl(0 0% 50%); display: inline-block;
+      animation: dot-bounce 1.2s infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: .2s; }
+    .chat-typing span:nth-child(3) { animation-delay: .4s; }
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-5px); }
+    }
   </style>
 </head>
 <body>
@@ -779,6 +959,386 @@
         }
       }, 3000);
     })();
+  </script>
+
+  <!-- ============ CHAT WIDGET ============ -->
+  <button class="chat-toggle" id="chat-toggle" aria-label="Abrir cotizador">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Cotizador El Fogón" aria-modal="true">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-header-avatar">F</div>
+        <div>
+          <div class="chat-header-name">Cotizador El Fogón</div>
+          <div class="chat-header-status">Asistente de ventas · IA</div>
+        </div>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Cerrar cotizador">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages"></div>
+
+    <div class="chat-quote" id="chat-quote" style="display:none">
+      <div class="chat-quote-header" id="quote-header">
+        <span class="chat-quote-title">Cotización &nbsp;<span id="quote-count">0</span> ítems</span>
+        <span class="chat-quote-total" id="quote-total">$0 USD</span>
+      </div>
+      <div class="chat-quote-body" id="quote-body">
+        <div id="quote-items"></div>
+        <button class="quote-print" id="quote-print">Imprimir / Guardar cotización</button>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chat-input" placeholder="¿Qué tipo de cocina estás equipando?" rows="1"></textarea>
+      <button class="chat-send" id="chat-send" aria-label="Enviar mensaje">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    // ── CONFIG ─────────────────────────────────────────────
+    var API_KEY = 'YOUR_API_KEY_HERE'; // <-- Paste your Anthropic API key here
+    var MODEL   = 'claude-haiku-4-5';
+    var API_URL = 'https://api.anthropic.com/v1/messages';
+
+    // ── PRODUCT CATALOG ────────────────────────────────────
+    var PRODUCTS = [
+      {id:'CH-900',  name:'Campana Extracción Pared 900mm',      category:'Extracción',    desc:'Acero inox 304, motor centrífugo 1,200 CFM, filtros de malla intercambiables.',      price:3200},
+      {id:'CH-1200', name:'Campana Extracción Central 1200mm',   category:'Extracción',    desc:'Colgante para islas, doble plenum, 1,800 CFM, iluminación LED integrada.',           price:4800},
+      {id:'ES-6Q',   name:'Estufa Industrial 6 Quemadores',      category:'Cocción',       desc:'Quemadores hierro fundido 20,000 BTU c/u, piloto automático, patas niveladoras.',   price:2800},
+      {id:'PG-900',  name:'Parrilla Char-Broiler 900mm',         category:'Cocción',       desc:'Rejilla hierro fundido, bandeja colectora de grasa, ideal para proteínas.',          price:2400},
+      {id:'FR-18',   name:'Freidora Doble Canasta 18L',          category:'Cocción',       desc:'18L por cesta, termostato de precisión, válvula de vaciado, 60,000 BTU.',           price:1600},
+      {id:'PL-900',  name:'Plancha Industrial 900mm',            category:'Cocción',       desc:'Superficie cromo-dura, termostato electrónico, zona fría perimetral.',               price:1800},
+      {id:'SL-900',  name:'Salamandra / Gratinadora 900mm',      category:'Cocción',       desc:'30,000 BTU, parrilla regulable en altura, ideal para gratinar y terminar platos.',   price:1400},
+      {id:'RF-2P',   name:'Refrigerador Industrial 2 Puertas',   category:'Refrigeración', desc:'Compresor seccionado, 2–8 °C, 1,400 L, certificado NSF.',                           price:3600},
+      {id:'CC-6',    name:'Cámara de Refrigeración 6 m²',        category:'Refrigeración', desc:'Paneles poliuretano 100 mm, condensadora remota, alarma de temperatura.',           price:8500},
+      {id:'MP-1500', name:'Mesa de Preparación 304 / 1500mm',    category:'Mesas',         desc:'Tablero calibre 16, entrepaño inferior, patas con nivelador, bordes rebordeados.',  price:1200},
+      {id:'MP-BS',   name:'Mesa Preparación c/Backsplash 1800mm',category:'Mesas',         desc:'Respaldo integrado para zona húmeda, ideal pelado y lavado de vegetales.',          price:1500},
+      {id:'LV-UC',   name:'Lavaplatos Industrial Bajo Mostrador',category:'Lavado',        desc:'Ciclo 90 s, doble brazo rociador, panel digital, certificado NSF.',                 price:2200},
+    ];
+
+    var CATALOG_TEXT = PRODUCTS.map(function(p) {
+      return '- [' + p.id + '] ' + p.name + ' (' + p.category + ') — $' + p.price.toLocaleString('en') + ' USD: ' + p.desc;
+    }).join('\n');
+
+    var SYSTEM =
+      'Eres el asistente de ventas de El Fogón, empresa de equipos industriales para cocinas profesionales en México.\n\n' +
+      'Tu objetivo: ayudar al cliente a identificar qué equipo necesita y armar una cotización preliminar.\n\n' +
+      'Primero haz 1-2 preguntas breves: tipo de negocio (restaurante, hotel, catering, ghost kitchen) y número de comensales por servicio. ' +
+      'Con esa información, usa suggest_products para mostrar opciones específicas del catálogo (máximo 4 productos). ' +
+      'Después explica brevemente por qué los elegiste.\n\n' +
+      'CATÁLOGO (referencia interna):\n' + CATALOG_TEXT + '\n\n' +
+      'Responde siempre en español. Sé directo, profesional y conciso. ' +
+      'Los precios son orientativos — la cotización final la coordina el equipo de El Fogón.';
+
+    var TOOLS = [{
+      name: 'suggest_products',
+      description: 'Muestra tarjetas de producto al usuario con precio y botón para agregar a la cotización.',
+      input_schema: {
+        type: 'object',
+        properties: {
+          products: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                id:       { type: 'string' },
+                name:     { type: 'string' },
+                category: { type: 'string' },
+                desc:     { type: 'string' },
+                price:    { type: 'number' }
+              },
+              required: ['id', 'name', 'category', 'desc', 'price']
+            }
+          }
+        },
+        required: ['products']
+      }
+    }];
+
+    // ── STATE ──────────────────────────────────────────────
+    var messages   = [];
+    var quote      = [];
+    var isLoading  = false;
+    var quoteOpen  = false;
+
+    // ── DOM ────────────────────────────────────────────────
+    var toggleBtn  = document.getElementById('chat-toggle');
+    var panel      = document.getElementById('chat-panel');
+    var closeBtn   = document.getElementById('chat-close');
+    var msgsEl     = document.getElementById('chat-messages');
+    var inputEl    = document.getElementById('chat-input');
+    var sendBtn    = document.getElementById('chat-send');
+    var quoteEl    = document.getElementById('chat-quote');
+    var quoteCnt   = document.getElementById('quote-count');
+    var quoteTot   = document.getElementById('quote-total');
+    var quoteBody  = document.getElementById('quote-body');
+    var quoteItems = document.getElementById('quote-items');
+    var quoteHdr   = document.getElementById('quote-header');
+    var printBtn   = document.getElementById('quote-print');
+
+    // ── PANEL TOGGLE ───────────────────────────────────────
+    toggleBtn.addEventListener('click', function () {
+      var opening = !panel.classList.contains('open');
+      panel.classList.toggle('open');
+      if (opening && messages.length === 0) showWelcome();
+    });
+    closeBtn.addEventListener('click', function () { panel.classList.remove('open'); });
+
+    // ── WELCOME ────────────────────────────────────────────
+    function showWelcome() {
+      appendMsg('assistant',
+        '¡Hola! Soy el asistente de cotización de El Fogón.\n\n' +
+        '¿Qué tipo de cocina estás equipando? Cuéntame el negocio y los comensales por servicio.'
+      );
+    }
+
+    // ── RENDER ─────────────────────────────────────────────
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function appendMsg(role, text) {
+      var row = document.createElement('div');
+      row.className = 'msg-row ' + role;
+      var bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.textContent = text;
+      if (role === 'assistant') {
+        var av = document.createElement('div');
+        av.className = 'msg-avatar';
+        av.textContent = 'F';
+        row.appendChild(av);
+      }
+      row.appendChild(bubble);
+      msgsEl.appendChild(row);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+
+    function showTyping() {
+      var row = document.createElement('div');
+      row.className = 'msg-row assistant';
+      row.id = 'chat-typing';
+      row.innerHTML = '<div class="msg-avatar">F</div><div class="msg-bubble"><div class="chat-typing"><span></span><span></span><span></span></div></div>';
+      msgsEl.appendChild(row);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+    function hideTyping() {
+      var el = document.getElementById('chat-typing');
+      if (el) el.remove();
+    }
+
+    function renderCards(products) {
+      var wrap = document.createElement('div');
+      wrap.className = 'msg-row assistant';
+      var av = document.createElement('div');
+      av.className = 'msg-avatar';
+      av.textContent = 'F';
+      var cards = document.createElement('div');
+      cards.className = 'product-cards';
+      products.forEach(function(p) {
+        var card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML =
+          '<div class="product-card-name">' + esc(p.name) + '</div>' +
+          '<div class="product-card-cat">' + esc(p.category) + '</div>' +
+          '<div class="product-card-desc">' + esc(p.desc) + '</div>' +
+          '<div class="product-card-footer">' +
+            '<span class="product-card-price">$' + Number(p.price).toLocaleString('en') + ' USD</span>' +
+            '<button class="product-card-add" data-pid="' + esc(p.id) + '">+ Agregar</button>' +
+          '</div>';
+        card.querySelector('.product-card-add').addEventListener('click', function() {
+          if (this.classList.contains('added')) return;
+          addToQuote(p);
+          this.textContent = '✓ Agregado';
+          this.classList.add('added');
+        });
+        cards.appendChild(card);
+      });
+      wrap.appendChild(av);
+      wrap.appendChild(cards);
+      msgsEl.appendChild(wrap);
+      msgsEl.scrollTop = msgsEl.scrollHeight;
+    }
+
+    // ── QUOTE ──────────────────────────────────────────────
+    function addToQuote(p) {
+      if (quote.some(function(q){return q.id === p.id;})) return;
+      quote.push(p);
+      updateQuote();
+    }
+    function removeFromQuote(id) {
+      quote = quote.filter(function(q){return q.id !== id;});
+      updateQuote();
+    }
+    function updateQuote() {
+      if (quote.length === 0) { quoteEl.style.display = 'none'; return; }
+      quoteEl.style.display = 'block';
+      quoteCnt.textContent = quote.length;
+      var total = quote.reduce(function(s,q){return s + q.price;}, 0);
+      quoteTot.textContent = '$' + total.toLocaleString('en') + ' USD';
+      quoteItems.innerHTML = '';
+      quote.forEach(function(item) {
+        var row = document.createElement('div');
+        row.className = 'quote-item';
+        row.innerHTML =
+          '<span class="quote-item-name">' + esc(item.name) + '</span>' +
+          '<span class="quote-item-price">$' + item.price.toLocaleString('en') + '</span>' +
+          '<button class="quote-item-remove" aria-label="Eliminar">×</button>';
+        row.querySelector('.quote-item-remove').addEventListener('click', function() {
+          removeFromQuote(item.id);
+          document.querySelectorAll('[data-pid="' + item.id + '"]').forEach(function(btn) {
+            btn.textContent = '+ Agregar';
+            btn.classList.remove('added');
+          });
+        });
+        quoteItems.appendChild(row);
+      });
+    }
+    quoteHdr.addEventListener('click', function() {
+      quoteOpen = !quoteOpen;
+      quoteBody.classList.toggle('open', quoteOpen);
+    });
+    printBtn.addEventListener('click', function() {
+      var total = quote.reduce(function(s,q){return s+q.price;},0);
+      var rows = quote.map(function(q) {
+        return '<tr><td style="padding:8px 14px;border-bottom:1px solid #eee">' + esc(q.name) +
+          ' <span style="color:#888;font-size:12px">(' + esc(q.category) + ')</span></td>' +
+          '<td style="padding:8px 14px;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">$' +
+          q.price.toLocaleString('en') + ' USD</td></tr>';
+      }).join('');
+      var date = new Date().toLocaleDateString('es-MX', {year:'numeric',month:'long',day:'numeric'});
+      var w = window.open('','_blank');
+      w.document.write(
+        '<!DOCTYPE html><html><head><title>Cotización El Fogón</title>' +
+        '<style>body{font-family:system-ui,sans-serif;max-width:680px;margin:48px auto;color:#111;line-height:1.5}' +
+        'h1{font-size:26px;margin:0}p.sub{color:#666;font-size:14px;margin:4px 0 36px}' +
+        'table{width:100%;border-collapse:collapse}th{text-align:left;padding:8px 14px;background:#f5f5f5;font-size:12px;letter-spacing:.04em;text-transform:uppercase}' +
+        '.row-total{font-size:16px;font-weight:600;text-align:right;padding:14px 14px 0}' +
+        '.note{color:#999;font-size:11.5px;margin-top:36px;line-height:1.6;border-top:1px solid #eee;padding-top:16px}' +
+        '@media print{button{display:none}}</style></head><body>' +
+        '<h1>El Fogón</h1><p class="sub">Cotización preliminar — ' + date + '</p>' +
+        '<table><thead><tr><th>Equipo</th><th style="text-align:right">Precio orientativo</th></tr></thead>' +
+        '<tbody>' + rows + '</tbody></table>' +
+        '<p class="row-total">Total estimado: $' + total.toLocaleString('en') + ' USD</p>' +
+        '<p class="note">* Precios orientativos. La cotización formal incluye instalación, garantía extendida y condiciones específicas de su proyecto. Contacto: hola@elfogon.mx · Respuesta en menos de 24 h.</p>' +
+        '</body></html>'
+      );
+      w.document.close();
+      w.print();
+    });
+
+    // ── API LOOP ───────────────────────────────────────────
+    function sendMessage(text) {
+      if (isLoading || !text.trim()) return;
+
+      if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
+        appendMsg('assistant', 'Para activar el cotizador, reemplaza YOUR_API_KEY_HERE en el código con tu clave de API de Anthropic.');
+        return;
+      }
+
+      isLoading = true;
+      sendBtn.disabled = true;
+      appendMsg('user', text);
+      messages.push({ role: 'user', content: text });
+      showTyping();
+
+      callAPI();
+    }
+
+    function callAPI() {
+      fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'x-api-key': API_KEY,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json',
+          'anthropic-dangerous-client-side-api-key-access': 'my-application'
+        },
+        body: JSON.stringify({
+          model: MODEL,
+          max_tokens: 1024,
+          system: SYSTEM,
+          tools: TOOLS,
+          messages: messages
+        })
+      })
+      .then(function(res) { return res.json().then(function(d){return {ok:res.ok,data:d};}); })
+      .then(function(r) {
+        hideTyping();
+        if (!r.ok) {
+          appendMsg('assistant', 'Error: ' + ((r.data.error && r.data.error.message) || 'No se pudo conectar con el asistente.'));
+          isLoading = false;
+          sendBtn.disabled = false;
+          return;
+        }
+
+        var data = r.data;
+        messages.push({ role: 'assistant', content: data.content });
+
+        var toolResults = [];
+        data.content.forEach(function(block) {
+          if (block.type === 'text' && block.text) {
+            appendMsg('assistant', block.text);
+          } else if (block.type === 'tool_use' && block.name === 'suggest_products') {
+            renderCards(block.input.products || []);
+            toolResults.push({
+              type: 'tool_result',
+              tool_use_id: block.id,
+              content: 'Tarjetas mostradas al usuario.'
+            });
+          }
+        });
+
+        if (data.stop_reason !== 'end_turn' && toolResults.length > 0) {
+          messages.push({ role: 'user', content: toolResults });
+          showTyping();
+          callAPI();
+          return;
+        }
+
+        isLoading = false;
+        sendBtn.disabled = false;
+      })
+      .catch(function(err) {
+        hideTyping();
+        appendMsg('assistant', 'Error de conexión. Por favor intenta de nuevo.');
+        console.error('Chat widget error:', err);
+        isLoading = false;
+        sendBtn.disabled = false;
+      });
+    }
+
+    // ── INPUT HANDLERS ─────────────────────────────────────
+    inputEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        var text = inputEl.value.trim();
+        if (text) { inputEl.value = ''; inputEl.style.height = 'auto'; sendMessage(text); }
+      }
+    });
+    inputEl.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+    });
+    sendBtn.addEventListener('click', function() {
+      var text = inputEl.value.trim();
+      if (text) { inputEl.value = ''; inputEl.style.height = 'auto'; sendMessage(text); }
+    });
+  })();
   </script>
 </body>
 </html>
