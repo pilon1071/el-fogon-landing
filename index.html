@@ -1015,18 +1015,61 @@
 
     // ── PRODUCT CATALOG ────────────────────────────────────
     var PRODUCTS = [
-      {id:'CH-900',  name:'Campana Extracción Pared 900mm',      category:'Extracción',    desc:'Acero inox 304, motor centrífugo 1,200 CFM, filtros de malla intercambiables.',      price:3200},
-      {id:'CH-1200', name:'Campana Extracción Central 1200mm',   category:'Extracción',    desc:'Colgante para islas, doble plenum, 1,800 CFM, iluminación LED integrada.',           price:4800},
-      {id:'ES-6Q',   name:'Estufa Industrial 6 Quemadores',      category:'Cocción',       desc:'Quemadores hierro fundido 20,000 BTU c/u, piloto automático, patas niveladoras.',   price:2800},
-      {id:'PG-900',  name:'Parrilla Char-Broiler 900mm',         category:'Cocción',       desc:'Rejilla hierro fundido, bandeja colectora de grasa, ideal para proteínas.',          price:2400},
-      {id:'FR-18',   name:'Freidora Doble Canasta 18L',          category:'Cocción',       desc:'18L por cesta, termostato de precisión, válvula de vaciado, 60,000 BTU.',           price:1600},
-      {id:'PL-900',  name:'Plancha Industrial 900mm',            category:'Cocción',       desc:'Superficie cromo-dura, termostato electrónico, zona fría perimetral.',               price:1800},
-      {id:'SL-900',  name:'Salamandra / Gratinadora 900mm',      category:'Cocción',       desc:'30,000 BTU, parrilla regulable en altura, ideal para gratinar y terminar platos.',   price:1400},
-      {id:'RF-2P',   name:'Refrigerador Industrial 2 Puertas',   category:'Refrigeración', desc:'Compresor seccionado, 2–8 °C, 1,400 L, certificado NSF.',                           price:3600},
-      {id:'CC-6',    name:'Cámara de Refrigeración 6 m²',        category:'Refrigeración', desc:'Paneles poliuretano 100 mm, condensadora remota, alarma de temperatura.',           price:8500},
-      {id:'MP-1500', name:'Mesa de Preparación 304 / 1500mm',    category:'Mesas',         desc:'Tablero calibre 16, entrepaño inferior, patas con nivelador, bordes rebordeados.',  price:1200},
-      {id:'MP-BS',   name:'Mesa Preparación c/Backsplash 1800mm',category:'Mesas',         desc:'Respaldo integrado para zona húmeda, ideal pelado y lavado de vegetales.',          price:1500},
-      {id:'LV-UC',   name:'Lavaplatos Industrial Bajo Mostrador',category:'Lavado',        desc:'Ciclo 90 s, doble brazo rociador, panel digital, certificado NSF.',                 price:2200},
+      // Cocción
+      {id:'AEHP-2-12',  name:'Asber AEHP-2-12 — Placa Calentadora a Gas',              category:'Cocción',              desc:'2 quemadores hierro fundido, 30,000 BTU c/u (60,000 BTU total)',                                        price:649},
+      {id:'AER-6-36',   name:'Asber AER-6-36 — Rango Comercial 6 Quemadores con Horno', category:'Cocción',              desc:'6 quemadores abiertos 30,000 BTU c/u (210,000 BTU total), horno estándar incluido',                     price:2895},
+      {id:'AEMR-60',    name:'Asber AEMR-2-G24-B6-60 — Rango a Gas 60"',               category:'Cocción',              desc:'6 quemadores + plancha 24" + 2 hornos, 288,000 BTU total',                                              price:5295},
+      {id:'AER-2-B10',  name:'Asber AER-2-B10-60 — Rango 10 Quemadores Doble Horno',   category:'Cocción',              desc:'10 quemadores abiertos 30,000 BTU c/u (360,000 BTU total), 2 hornos',                                   price:6995},
+      // Parrillas
+      {id:'AERB-24',    name:'Asber AERB-24 — Parrilla Char-Broiler 24"',              category:'Parrillas',            desc:'4 quemadores 16,000 BTU c/u (64,000 BTU total)',                                                        price:1295},
+      {id:'AERB-36',    name:'Asber AERB-36 — Parrilla Char-Broiler 36"',              category:'Parrillas',            desc:'6 quemadores 16,000 BTU c/u (96,000 BTU total)',                                                        price:1695},
+      {id:'AERB-48',    name:'Asber AERB-48 — Parrilla Char-Broiler 48"',              category:'Parrillas',            desc:'8 quemadores 16,000 BTU c/u (128,000 BTU total)',                                                       price:2195},
+      {id:'AECRB-24',   name:'Asber AECRB-24 — Parrilla con Piedras de Lava 24"',      category:'Parrillas',            desc:'2 quemadores 24,000 BTU c/u (48,000 BTU total), piedras de lava',                                       price:1495},
+      // Planchas
+      {id:'AEMG-24',    name:'Asber AEMG-24-H — Plancha 24"',                          category:'Planchas',             desc:'2 quemadores 24,000 BTU c/u (48,000 BTU total), placa acero 3/4"',                                      price:1395},
+      {id:'AEMG-36',    name:'Asber AEMG-36-H — Plancha 36"',                          category:'Planchas',             desc:'3 quemadores 24,000 BTU c/u (72,000 BTU total)',                                                        price:1895},
+      {id:'AEMG-48',    name:'Asber AEMG-48-H — Plancha 48"',                          category:'Planchas',             desc:'4 quemadores 24,000 BTU c/u (96,000 BTU total)',                                                        price:2495},
+      // Cocción Especializada
+      {id:'AESP-18',    name:'Asber AESP-18-2 — Rango para Ollas 18"',                 category:'Cocción Especializada',desc:'2 quemadores 45,000 BTU c/u (90,000 BTU total)',                                                        price:1495},
+      {id:'AESP-42',    name:'Asber AESP-42-4 — Rango para Ollas 42"',                 category:'Cocción Especializada',desc:'4 quemadores 45,000 BTU c/u (180,000 BTU total)',                                                       price:2795},
+      {id:'AECM-24',    name:'Asber AECM-24 — Gratinador / Salamandra 24"',            category:'Cocción Especializada',desc:'20,000 BTU, para gratinar y derretir',                                                                  price:1195},
+      {id:'AECM-36',    name:'Asber AECM-36 — Gratinador / Salamandra 36"',            category:'Cocción Especializada',desc:'2 quemadores, 40,000 BTU total',                                                                        price:1595},
+      {id:'AEF-4050',   name:'Asber AEF-4050-S-E — Freidora a Gas',                    category:'Cocción Especializada',desc:'3 quemadores 105,000 BTU total, capacidad 40–50 lb de aceite',                                         price:1695},
+      // Bases Refrigeradas
+      {id:'ACBR-52',    name:'Asber ACBR-52 — Base Refrigerada 53"',                   category:'Bases Refrigeradas',   desc:'2 gavetas refrigeradas, 32°F–41°F',                                                                    price:4495},
+      {id:'ACBR-60',    name:'Asber ACBR-52-60 — Base Refrigerada 60"',                category:'Bases Refrigeradas',   desc:'2 gavetas refrigeradas, mayor superficie de trabajo',                                                   price:5195},
+      {id:'ACBR-72',    name:'Asber ACBR-72 — Base Refrigerada 72"',                   category:'Bases Refrigeradas',   desc:'4 gavetas refrigeradas',                                                                               price:6195},
+      {id:'ACBR-96',    name:'Asber ACBR-96 — Base Refrigerada 96"',                   category:'Bases Refrigeradas',   desc:'4 gavetas refrigeradas, capacidad ampliada',                                                           price:8195},
+      // Mesas de Preparación
+      {id:'APTS-27-8',  name:'Asber APTS-27-8 — Mesa Sándwiches / Ensaladas 27"',      category:'Mesas de Preparación', desc:'1 puerta, 33°F–41°F, incluye bandejas',                                                                price:2295},
+      {id:'APTM-27-12', name:'Asber APTM-27-12 — Mesa Mega Top 27"',                   category:'Mesas de Preparación', desc:'Diseño expandido, mayor capacidad de ingredientes',                                                     price:2595},
+      {id:'APTM-48-18', name:'Asber APTM-48-18 — Mesa Mega Top 48"',                   category:'Mesas de Preparación', desc:'2 puertas, almacenamiento para 18 bandejas 1/6',                                                       price:3495},
+      {id:'APTM-60-24', name:'Asber APTM-60-24 — Mesa Mega Top 60"',                   category:'Mesas de Preparación', desc:'2 puertas, capacidad para 24 bandejas 1/6',                                                            price:4295},
+      {id:'APTM-72-30', name:'Asber APTM-72-30 — Mesa Mega Top 72"',                   category:'Mesas de Preparación', desc:'3 puertas, almacenamiento para 30 bandejas 1/6',                                                       price:4995},
+      {id:'APTS-48-12', name:'Asber APTS-48-12 — Mesa Sándwiches / Ensaladas 48"',     category:'Mesas de Preparación', desc:'2 puertas, almacenamiento para 12 bandejas',                                                           price:3295},
+      // Refrigeración
+      {id:'ARMD-49',    name:'Asber ARMD-49 — Mostrador Refrigerado 49 ft³',            category:'Refrigeración',        desc:'49 ft³, puertas de vidrio para exhibición',                                                            price:4695},
+      {id:'ARR-49',     name:'Asber ARR-49-H — Refrigerador Alcance 49 ft³',            category:'Refrigeración',        desc:'49 ft³, 2 puertas sólidas',                                                                            price:3995},
+      {id:'ARF-72',     name:'Asber ARF-72-H — Congelador Alcance 72 ft³',              category:'Refrigeración',        desc:'-4°F a -8°F, 72 ft³, 3 puertas',                                                                      price:6995},
+      {id:'ADBC-50',    name:'Asber ADBC-50 — Enfriador de Botellas 50"',              category:'Refrigeración',        desc:'510 latas 12oz o 280 botellas 12oz',                                                                   price:2495},
+      {id:'ADBC-65',    name:'Asber ADBC-65 — Enfriador de Botellas 65"',              category:'Refrigeración',        desc:'690 latas 12oz o 370 botellas 12oz',                                                                   price:2995},
+      {id:'ADBC-80',    name:'Asber ADBC-80 — Enfriador de Botellas 80"',              category:'Refrigeración',        desc:'850 latas 12oz o 470 botellas 12oz',                                                                   price:3595},
+      {id:'ADBC-94',    name:'Asber ADBC-94 — Enfriador de Botellas 95"',              category:'Refrigeración',        desc:'1,050 latas 12oz o 575 botellas 12oz',                                                                 price:4295},
+      // Cerveza y Bar
+      {id:'ADDC-23',    name:'Asber ADDC-23 — Enfriador Draft 1 Grifo',                 category:'Cerveza y Bar',        desc:'1 barril, 33°F–38°F, 1 torre acero inoxidable',                                                        price:1995},
+      {id:'ADDC-68',    name:'Asber ADDC-68 — Enfriador Draft 3 Grifos',                category:'Cerveza y Bar',        desc:'3 barriles, 2 torres acero inoxidable',                                                                price:3295},
+      {id:'ADDC-78',    name:'Asber ADDC-78 — Enfriador Draft 4 Grifos',                category:'Cerveza y Bar',        desc:'4 barriles, 2 torres doble grifo',                                                                     price:3795},
+      {id:'ADDC-94',    name:'Asber ADDC-94 — Enfriador Draft 4 Grifos XL',             category:'Cerveza y Bar',        desc:'5 barriles, almacenamiento alto volumen',                                                              price:4495},
+      {id:'ABBC-48S',   name:'Asber ABBC-24-48 — Enfriador de Barra Puertas Sólidas',  category:'Cerveza y Bar',        desc:'300 latas 12oz o 2 barriles',                                                                          price:2195},
+      {id:'ABBC-48G',   name:'Asber ABBC-24-48G — Enfriador de Barra Puertas Vidrio',  category:'Cerveza y Bar',        desc:'300 latas 12oz o 2 barriles, visibilidad de producto',                                                 price:2395},
+      {id:'ABBC-60',    name:'Asber ABBC-24-60 — Enfriador de Barra 60"',              category:'Cerveza y Bar',        desc:'390 latas 12oz o 3 barriles',                                                                          price:2995},
+      // Accesorios
+      {id:'AGF-24',     name:'Asber AGF-24 — Enfriador de Vasos 24"',                   category:'Accesorios',           desc:'~96 jarras de 12oz',                                                                                   price:1195},
+      {id:'AGF-36',     name:'Asber AGF-36 — Enfriador de Vasos 36"',                   category:'Accesorios',           desc:'~162 jarras de 12oz',                                                                                  price:1495},
+      {id:'AGF-50',     name:'Asber AGF-50 — Enfriador de Vasos 50"',                   category:'Accesorios',           desc:'~234 jarras de 12oz',                                                                                  price:1895},
+      // Lavado
+      {id:'ECS3',       name:'Klinger\'s ECS3 — Fregadero 3 Compartimientos',           category:'Lavado',               desc:'Acero inox 18-gauge, compartimientos 16"×20"×11"',                                                     price:695},
+      {id:'ECS32D',     name:'Klinger\'s ECS32D — Fregadero 3 Comp. Escurridor Doble', category:'Lavado',               desc:'Dimensiones totales 84"×25.5"×41"',                                                                    price:1195},
     ];
 
     var CATALOG_TEXT = PRODUCTS.map(function(p) {
